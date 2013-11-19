@@ -1,0 +1,26 @@
+{
+  "name": "treepath",
+  "version": "0.1.0",
+  "description": "Combinators for selecting DOM nodes.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/killdream/treepath.git"
+  },
+  "keywords": [
+    "dom",
+    "xpath",
+    "queryselector"
+  ],
+  "author": "Quildreen Motta",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/killdream/treepath/issues"
+  },
+  "dependencies": {
+    "athena": "~0.2.0"
+  }
+}
