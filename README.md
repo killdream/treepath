@@ -9,6 +9,9 @@ Treepath is a library for selecting DOM nodes with combinators. It works very
 much like `document.querySelector`, but can be extended to work with any kind
 of tree-like data structure — and is also composable!
 
+One could also say this is just an experimental port of [enlive](https://github.com/cgrand/enlive)
+to JavaScript — in fact, most of the inspiration comes from it :P
+
 
 ## Example
 
