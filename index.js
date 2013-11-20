@@ -39,8 +39,14 @@ function map(f, xs) {
 fold = f.curry(3, fold)
 function fold(query, initial, node) {
   return match(query, node)?    initial.concat(node)
+                                       .concat(map(fold(query, initial)
+                                                  ,node.childNodes))
+
   :      partial(query, node)?  initial.concat(map(fold(step(query), initial)
                                                   , node.childNodes))
+                                       .concat(map(fold(query, initial)
+                                                  , node.childNodes))
+
   :      /* otherwise */        initial.concat(map(fold(query, initial)
                                                   , node.childNodes)) }
 
@@ -70,6 +76,25 @@ function flatten(as) {
                       :      /* otherwise */    bs.concat([x]) }
                   , [])}
 
+function eq(a, b) {
+  return a === b }
+
+function startsWith(a, b) {
+  return a.indexOf(b) === 0 }
+
+function endsWith(a, b) {
+  return a.lastIndexOf(b) === a.length - b.length }
+
+function contains(as, a) {
+  return as.indexOf(a) != -1 }
+
+function asClassList(as, a) {
+  return [as.trim().split(/\s+/), a] }
+
+spread = f.curry(2, spread)
+function spread(f, as) {
+  return f.apply(this, as) }
+
 
 // Selectors
 select = f.curry(2, select)
@@ -82,10 +107,47 @@ function tag(name, node) {
   &&     node.tagName
   &&     node.tagName.toLowerCase() === name.toLowerCase() }
 
+hasAttr = f.curry(2, hasAttr)
+function hasAttr(name, node) {
+  return node
+  &&     node.hasAttribute
+  &&     node.hasAttribute(name) }
+
+attr = f.curry(4, attr)
+function attr(compare, name, value, node) {
+  return node
+  &&     node.getAttribute
+  &&     compare(node.getAttribute(name), value) }
+
+
+function not(f) {
+  return function() {
+           return !f.apply(this, arguments) }}
+
+function or() {
+  var fs = slice(arguments)
+  return function(node) {
+           return fs.reduce(function(a, f){ return a || f(node) }, false) }}
+
+function and() {
+  var fs = slice(arguments)
+  return function(node) {
+           return fs.reduce(function(a, f){ return a && f(node) }, true) }}
+
 
 
 // Exports
-module.exports = { select: select
-                 , fold: fold
-                 , tag: tag
+module.exports = { select       : select
+                 , fold         : fold
+                 , tag          : tag
+                 , or           : or
+                 , and          : and
+                 , hasAttr      : hasAttr
+                 , attr         : attr
+                 , attrEq       : attr(eq)
+                 , attrStarts   : attr(startsWith)
+                 , attrEnds     : attr(endsWith)
+                 , attrContains : attr(contains)
+                 , hasClass     : attr(f.compose(spread(contains), asClassList), 'class')
+                 , id           : attr(eq, 'id')
                  }
