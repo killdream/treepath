@@ -78,7 +78,9 @@ function select(query, node) {
 
 tag = f.curry(2, tag)
 function tag(name, node) {
-  return node.tagName.toLowerCase() === name.toLowerCase() }
+  return node
+  &&     node.tagName
+  &&     node.tagName.toLowerCase() === name.toLowerCase() }
 
 
 
