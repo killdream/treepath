@@ -1,6 +1,6 @@
 {
   "name": "treepath",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Combinators for selecting DOM nodes.",
   "main": "index.js",
   "scripts": {
