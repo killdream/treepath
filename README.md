@@ -2,7 +2,7 @@ Treepath
 ========
 
 [![NPM version](https://badge.fury.io/js/treepath.png)](http://badge.fury.io/js/treepath)
-[![Dependencies Status](https://david-dm.org/killdream/treepath.png)](https://david-dm.org/killdream/treepath)
+[![Dependencies Status](https://david-dm.org/robotlolita/treepath.png)](https://david-dm.org/robotlolita/treepath)
 [![experimental](http://hughsk.github.io/stability-badges/dist/experimental.svg)](http://github.com/hughsk/stability-badges)
 
 Treepath is a library for selecting DOM nodes with combinators. It works very
@@ -81,4 +81,4 @@ platforms by the use of shims. Just include [es5-shim][] :)
 
 Copyright (c) 2013 Quildreen Motta.
 
-Released under the [MIT licence](https://github.com/killdream/treepath/blob/master/LICENCE).
+Released under the [MIT licence](https://github.com/robotlolita/treepath/blob/master/LICENCE).
